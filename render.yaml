@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: heart-api
+    env: docker
+    plan: free
+    region: oregon
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: KAGGLE_USERNAME
+        sync: false
+      - key: KAGGLE_KEY
+        sync: false
+    autoDeploy: true
