@@ -61,6 +61,12 @@ a {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
 }
 
+.form-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -83,6 +89,40 @@ input, select {
   color: var(--text);
   outline: none;
   transition: border 0.2s, transform 0.15s;
+}
+
+select option {
+  background: var(--bg-start);
+  color: var(--text);
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.model-panel {
+  flex: 1;
+  min-width: 260px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.help {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
 }
 
 input:focus, select:focus {

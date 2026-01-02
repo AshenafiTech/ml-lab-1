@@ -85,69 +85,76 @@ function App() {
       </header>
 
       <main className="card" style={{ marginTop: 20 }}>
-        <form onSubmit={handleSubmit} className="grid">
-          {fieldMeta.map((field) => (
-            <label key={field.name} className="label">
-              <span>{field.name}</span>
-              {field.type === "select" ? (
-                <select
-                  value={form[field.name]}
-                  onChange={(e) =>
-                    handleChange(
-                      field.name,
-                      typeof field.options[0] === "number"
-                        ? Number(e.target.value)
-                        : e.target.value
-                    )
-                  }
-                >
-                  {field.options.map((opt) => (
-                    <option key={opt} value={opt}>
-                      {opt}
+        <form onSubmit={handleSubmit} className="form-shell">
+          <div className="grid">
+            {fieldMeta.map((field) => (
+              <label key={field.name} className="label">
+                <span>{field.name}</span>
+                {field.type === "select" ? (
+                  <select
+                    value={form[field.name]}
+                    onChange={(e) =>
+                      handleChange(
+                        field.name,
+                        typeof field.options[0] === "number"
+                          ? Number(e.target.value)
+                          : e.target.value
+                      )
+                    }
+                  >
+                    {field.options.map((opt) => (
+                      <option key={opt} value={opt}>
+                        {opt}
+                      </option>
+                    ))}
+                  </select>
+                ) : (
+                  <input
+                    type="number"
+                    value={form[field.name]}
+                    onChange={(e) => handleChange(field.name, Number(e.target.value))}
+                    min={field.min}
+                    max={field.max}
+                    step={field.step || 1}
+                    required
+                  />
+                )}
+              </label>
+            ))}
+          </div>
+
+          <div className="controls">
+            <div className="model-panel">
+              <div className="label" style={{ margin: 0 }}>
+                <span style={{ color: "var(--text)" }}>Model</span>
+                <select value={model} onChange={(e) => setModel(e.target.value)}>
+                  {modelOptions.map((opt) => (
+                    <option key={opt.value} value={opt.value}>
+                      {opt.label}
                     </option>
                   ))}
                 </select>
-              ) : (
-                <input
-                  type="number"
-                  value={form[field.name]}
-                  onChange={(e) => handleChange(field.name, Number(e.target.value))}
-                  min={field.min}
-                  max={field.max}
-                  step={field.step || 1}
-                  required
-                />
-              )}
-            </label>
-          ))}
+              </div>
+              <p className="help">Switch between Logistic Regression and Decision Tree.</p>
+            </div>
 
-          <label className="label">
-            <span>Model</span>
-            <select value={model} onChange={(e) => setModel(e.target.value)}>
-              {modelOptions.map((opt) => (
-                <option key={opt.value} value={opt.value}>
-                  {opt.label}
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <div style={{ display: "flex", alignItems: "flex-end", gap: 10 }}>
-            <button type="submit" disabled={loading}>
-              {loading ? "Scoring..." : "Predict"}
-            </button>
-            <button
-              type="button"
-              disabled={loading}
-              onClick={() => {
-                setForm(initialForm);
-                setResult(null);
-                setError(null);
-              }}
-              style={{ background: "rgba(255,255,255,0.08)", color: "var(--text)", border: "1px solid var(--border)" }}
-            >
-              Reset
-            </button>
+            <div className="actions">
+              <button type="submit" disabled={loading}>
+                {loading ? "Scoring..." : "Predict"}
+              </button>
+              <button
+                type="button"
+                disabled={loading}
+                onClick={() => {
+                  setForm(initialForm);
+                  setResult(null);
+                  setError(null);
+                }}
+                style={{ background: "rgba(255,255,255,0.08)", color: "var(--text)", border: "1px solid var(--border)" }}
+              >
+                Reset
+              </button>
+            </div>
           </div>
         </form>
 
