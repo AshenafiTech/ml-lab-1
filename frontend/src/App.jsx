@@ -41,7 +41,8 @@ function App() {
   const [error, setError] = useState(null);
 
   const apiBase = useMemo(() => {
-    return import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+    // Default to Render backend if env var not provided
+    return import.meta.env.VITE_API_BASE_URL || "https://ml-lab-1-cuxn.onrender.com";
   }, []);
 
   const handleChange = (name, value) => {
