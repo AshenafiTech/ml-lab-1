@@ -76,10 +76,7 @@ function App() {
       <header className="header">
         <div>
           <div className="badge">Heart Disease Predictor</div>
-          <h1 style={{ margin: "8px 0 0" }}>Bold teal/amber single-record scorer</h1>
-          <p style={{ color: "var(--muted)", marginTop: 6 }}>
-            Uses Kaggle heart-failure-prediction dataset with Logistic Regression and Decision Tree models.
-          </p>
+          <h1 style={{ margin: "8px 0 0" }}>Single-record scorer</h1>
         </div>
         <div className="status">
           <span className="status-dot" />
@@ -163,10 +160,6 @@ function App() {
           </div>
         )}
       </main>
-
-      <footer>
-        Deploy API on Render (Docker) and this UI on Vercel. Configure VITE_API_BASE_URL env var on Vercel.
-      </footer>
     </div>
   );
 }
