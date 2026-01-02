@@ -3,8 +3,6 @@ __pycache__/
 .env
 .env.*
 *.pyc
-models/*.joblib
-models/*.pkl
 kaggle.json
 node_modules/
 dist/
